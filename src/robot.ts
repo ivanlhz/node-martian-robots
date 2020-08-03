@@ -1,36 +1,31 @@
 const cardinatePoints: TOrientation[] = ['N', 'E', 'S', 'W']
 
 export type TOrientation = 'N' | 'S' | 'E' | 'W';
-export type TPosition = {x:number; y: number}
-export type TRobot = {position: TPosition; orientation: TOrientation}
-
-export const robot:TRobot = {
-  position:  {x:0,y:0},
-  orientation: 'N',
-}
+export type TPosition = { x: number; y: number }
+export type TRobot = { position: TPosition; orientation: TOrientation }
 
 export function walk(orientation: TOrientation, position: TPosition) {
   switch (orientation) {
     case 'E':
-      position.x +=1;
+      position.x += 1;
       break;
     case 'S':
-      position.y -=1;
+      position.y -= 1;
       break;
     case 'W':
-      position.y -=1;
+      position.x -= 1;
       break;
-  
+
     default:
-      position.y +=1;
+      position.y += 1;
       break;
   }
 
   return position;
 };
 
-export function turnToThe (orientation: TOrientation, turn: 'L' | 'R'): TOrientation | undefined {
-  const currentIndex = cardinatePoints.findIndex((cpoint) => cpoint === orientation );
+export function turnToThe(orientation: TOrientation, turn: 'L' | 'R'): TOrientation | undefined {
+  const currentIndex = cardinatePoints.findIndex((cpoint) => cpoint === orientation);
   if (currentIndex > -1) {
     const newIndex = turn === 'R' ? currentIndex + 1 : currentIndex - 1;
     return newOrientation(newIndex);
@@ -38,7 +33,7 @@ export function turnToThe (orientation: TOrientation, turn: 'L' | 'R'): TOrienta
   return undefined;
 }
 
-function newOrientation (newIndex: number): TOrientation {
+function newOrientation(newIndex: number): TOrientation {
   if (newIndex > (cardinatePoints.length - 1)) {
     return cardinatePoints[0]
   }
@@ -48,4 +43,24 @@ function newOrientation (newIndex: number): TOrientation {
   }
 
   return cardinatePoints[newIndex]
+}
+
+export function getOrientation(orientation: string): TOrientation {
+  switch (orientation) {
+    case 'S':
+      return 'S'
+    case 'E':
+      return 'E'
+    case 'W':
+      return 'W'
+    default:
+      return 'N'
+  }
+}
+
+export function getTurn(turn: string): 'L' | 'R' {
+  if(turn === 'L'){
+    return 'L';
+  }
+  return 'R';
 }
