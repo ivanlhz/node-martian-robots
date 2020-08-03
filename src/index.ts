@@ -1,37 +1,27 @@
-import {turnToThe, walk, TPosition, getOrientation, TRobot, getTurn} from './robot'
+import {getOrientation, TRobot} from './robot';
+import {isLost, calculateFinalPosition} from './utils';
 
 const newMaxGridInput = '5 3';
-// const robotInitInput = '1 1 E';
-// const robotMovementsInput = 'RFRFRFRF';
-const robotInitInput = '0 3 W';
-const robotMovementsInput = 'LLFFFLFLFL';
+const robotInitInput = '1 1 E';
+const robotMovementsInput = 'RFRFRFRF';
+// const robotInitInput = '0 3 W';
+// const robotMovementsInput = 'LLFFFLFLFL';
+// const robotInitInput = '3 2 N';
+// const robotMovementsInput = 'FRRFLLFFRRFLL'
 
 // Init
 const newMaxGridSplitted = newMaxGridInput.split(' ');
 const robotInitSplitted = robotInitInput.split(' ');
 
-
-const marsGrid: TPosition = {x: parseInt(newMaxGridSplitted[0]), y: parseInt(newMaxGridSplitted[1])}
-const robot: TRobot = {
+const robot: TRobot = calculateFinalPosition({
   position: {x: parseInt(robotInitSplitted[0]), y: parseInt(robotInitSplitted[1])},
   orientation: getOrientation(robotInitSplitted[2]),
-}
+}, robotMovementsInput)
 
-for (let i = 0 ; i< robotMovementsInput.length ; i ++) {
-  const currentAction = robotMovementsInput[i];
-  if (currentAction === 'F') {
-    robot.position = walk(robot.orientation, robot.position)
-  } else {
-    const newOrientation = turnToThe(robot.orientation, getTurn(currentAction));
-    if (newOrientation) robot.orientation = newOrientation;
-  }
-}
-console.log(robot)
-
-// Check if it is lost
 const max = {x:parseInt(newMaxGridSplitted[0]), y: parseInt(newMaxGridSplitted[1]) }
-console.log(max)
-if(robot.position.x > max.x || robot.position.y > max.y || robot.position.x < 0 || robot.position.y < 0) {
-  console.log('LOSS')
-} 
+if(isLost(robot, max)) {
+  console.log(`${robot.position.x} ${robot.position.y} ${robot.orientation} LOSS`)
+}  else {
+  console.log(`${robot.position.x} ${robot.position.y} ${robot.orientation}`)
+}
 

@@ -1,11 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.turnToThe = exports.walk = exports.robot = void 0;
+exports.getTurn = exports.getOrientation = exports.turnToThe = exports.walk = void 0;
 var cardinatePoints = ['N', 'E', 'S', 'W'];
-exports.robot = {
-    position: { x: 0, y: 0 },
-    orientation: 'N',
-};
 function walk(orientation, position) {
     switch (orientation) {
         case 'E':
@@ -15,7 +11,7 @@ function walk(orientation, position) {
             position.y -= 1;
             break;
         case 'W':
-            position.y -= 1;
+            position.x -= 1;
             break;
         default:
             position.y += 1;
@@ -43,3 +39,23 @@ function newOrientation(newIndex) {
     }
     return cardinatePoints[newIndex];
 }
+function getOrientation(orientation) {
+    switch (orientation) {
+        case 'S':
+            return 'S';
+        case 'E':
+            return 'E';
+        case 'W':
+            return 'W';
+        default:
+            return 'N';
+    }
+}
+exports.getOrientation = getOrientation;
+function getTurn(turn) {
+    if (turn === 'L') {
+        return 'L';
+    }
+    return 'R';
+}
+exports.getTurn = getTurn;
