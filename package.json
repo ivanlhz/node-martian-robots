@@ -7,7 +7,7 @@
     "start": "npm run build && node build/index.js",
     "build": "rimraf ./build && tsc",
     "start:dev": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watchAll"
   },
   "keywords": [],
   "author": {
@@ -18,13 +18,38 @@
   "dependencies": {
     "@types/inquirer": "^7.3.0",
     "inquirer": "^7.3.3",
+    "jest": "^26.2.2",
     "npm": "^6.14.7"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.8",
     "@types/node": "^14.0.27",
     "nodemon": "^2.0.4",
     "rimraf": "^3.0.2",
+    "ts-jest": "^26.1.4",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.7"
+  },
+  "jest": {
+    "roots": ["<rootDir>/src/", "<rootDir>/src/__tests__/"],
+    "testEnvironment": "node",
+    "verbose": true,
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "tsx",
+      "json",
+      "node"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "collectCoverage": true,
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testMatch": [
+      "**/*.test.ts"
+    ]
   }
 }
