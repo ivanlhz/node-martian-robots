@@ -31,7 +31,7 @@
     "typescript": "^3.9.7"
   },
   "jest": {
-    "roots": ["<rootDir>/src/", "<rootDir>/src/__tests__/"],
+    "roots": ["<rootDir>/src/", "<rootDir>/__tests__/"],
     "testEnvironment": "node",
     "verbose": true,
     "moduleFileExtensions": [

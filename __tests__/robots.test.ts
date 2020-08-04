@@ -1,4 +1,4 @@
-import {getTurn, getOrientation, walk, turnToThe} from '../robot'
+import {getTurn, getOrientation, walk, turnToThe, newOrientation} from '../src/robot'
 
 describe('Test robot fuctions', () => {
   test(`Should return L or R`, () => {
@@ -23,5 +23,13 @@ describe('Test robot fuctions', () => {
   test(`Should turn to a new orientation`, () => {
     expect(turnToThe('N','L')).toBe('W')
     expect(turnToThe('N','R')).toBe('E')
+  })
+
+  test(`SHould return new orientation`, () => {
+    expect(newOrientation(0)).toBe('N')
+    expect(newOrientation(1)).toBe('E')
+    expect(newOrientation(2)).toBe('S')
+    expect(newOrientation(3)).toBe('W')
+    expect(newOrientation(4)).toBe('N')
   })
 })

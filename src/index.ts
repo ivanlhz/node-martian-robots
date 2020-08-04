@@ -2,11 +2,11 @@ import { getOrientation, TRobot } from './robot';
 import { isLost, calculateFinalPosition, robotQuestions, firstQuestion, endQuestion } from './utils';
 import { prompt } from 'inquirer'
 
-const newRobot = async (isRepeat: boolean = false) => {
-  const questions = isRepeat ? robotQuestions : [firstQuestion, ...robotQuestions]
+const newRobot = async (maxGridInput: string | undefined = undefined) => {
   console.clear();
+  const questions = maxGridInput ? robotQuestions : [firstQuestion, ...robotQuestions]
   const answers = await prompt(questions)
-  const newMaxGridInput = answers.maxGridInput;
+  const newMaxGridInput = maxGridInput ? maxGridInput : answers.maxGridInput;
   const robotInitInput = answers.robotInitPosition;
   const robotMovementsInput = answers.movements;
   const newMaxGridSplitted = newMaxGridInput.split(' ');
@@ -27,7 +27,7 @@ const newRobot = async (isRepeat: boolean = false) => {
 
   const repeat = await prompt([endQuestion])
   if (repeat.again) {
-    newRobot(true);
+    newRobot(newMaxGridInput);
   }
 }
 

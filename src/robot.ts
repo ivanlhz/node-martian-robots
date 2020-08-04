@@ -30,9 +30,14 @@ export function turnToThe(orientation: TOrientation, turn: 'L' | 'R'): TOrientat
     const newIndex = turn === 'R' ? currentIndex + 1 : currentIndex - 1;
     return newOrientation(newIndex);
   }
+  return undefined;
 }
 
-function newOrientation(newIndex: number): TOrientation {
+export function newOrientation(newIndex: number): TOrientation {
+  if (newIndex > (cardinatePoints.length - 1)) {
+    return cardinatePoints[0]
+  }
+
   if (newIndex < 0) {
     return cardinatePoints[cardinatePoints.length - 1]
   }
