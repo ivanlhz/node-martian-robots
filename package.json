@@ -7,7 +7,8 @@
     "start": "npm run build && node build/index.js",
     "build": "rimraf ./build && tsc",
     "start:dev": "nodemon",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "test:coverage": "jest --coverage"
   },
   "keywords": [],
   "author": {
@@ -44,12 +45,14 @@
     "testPathIgnorePatterns": [
       "/node_modules/"
     ],
-    "collectCoverage": true,
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
     "testMatch": [
       "**/*.test.ts"
+    ],
+    "collectCoverageFrom": [
+      "**/src/**/*.ts"
     ]
   }
 }
