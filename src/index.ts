@@ -2,7 +2,7 @@ import { getOrientation, TRobot } from './robot';
 import { calculateFinalPosition, robotQuestions, firstQuestion, endQuestion, parseAnswers, displayFinalPosition, getMaxGridPosition } from './utils';
 import { prompt } from 'inquirer'
 
-const newRobot = async (maxGridInput: string | undefined = undefined) => {
+export const newRobot = async (maxGridInput: string | undefined = undefined) => {
   console.clear();
   const questions = maxGridInput ? robotQuestions : [firstQuestion, ...robotQuestions]
   const answers = await prompt(questions)
