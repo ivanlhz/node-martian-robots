@@ -47,11 +47,11 @@ export function newOrientation(newIndex: number): TOrientation {
 
 export function getOrientation(orientation: string): TOrientation {
   switch (orientation) {
-    case 'S':
+    case 'S' || 's':
       return 'S'
-    case 'E':
+    case 'E' || 'e':
       return 'E'
-    case 'W':
+    case 'W' || 'w':
       return 'W'
     default:
       return 'N'
